@@ -1,0 +1,319 @@
+﻿@{
+    ViewBag.Title = "探针信息";
+    ViewBag.MIndex = 1;
+    ViewBag.CIndex = 1;
+    ViewBag.BodyTitle = "晨曦小竹dotNet探针 v0.1";
+    DateTime stime = DateTime.Now;
+}
+@section Heads{
+    <style type="text/css">
+        .probeContent {
+            border: 1px solid #C9DDF0 !important;
+        }
+        .trTitle td {
+            font-weight: bold !important;
+            padding-left: 15px !important;
+        }
+    </style>
+}
+@section Functions{
+    <li><input class="button" type="button" value="刷 新" onclick="location.reload();" /></li>
+}
+<table class="probeContent">
+    <tbody>
+        <tr class="trTitle">
+            <td colspan="2">磁盘读写权限</td>
+        </tr>
+        <tr>
+            <td>是否支持写入：</td>
+            <td>
+                @{
+                    try
+                    {
+                        System.IO.StreamWriter sw = null;
+                        string riobepath = Server.MapPath("~/robeWriter.html");
+                        sw = new System.IO.StreamWriter(riobepath, false, System.Text.Encoding.GetEncoding("GB2312"));
+                        sw.WriteLine(DateTime.Now);
+                        sw.Close();
+                        sw.Dispose();
+                        if (System.IO.File.Exists(riobepath)) { System.IO.File.Delete(riobepath); }
+                        <font class="color-blue"><b>支持</b></font>
+                    }
+                    catch
+                    {
+                        <font class="color-red"><b>不支持</b></font>
+                    }
+                }
+                <br /><br />
+                写入权限说明：有些空间商的空间看起来用一些asp.net探针运行正常，其实只是验证了asp.net对空间的读取权限，<br />
+                asp.net的写入权限可能没有的，要是不支持差不多所有使用的Access数据库的asp.net程序用不了，也生成不了静态页面。<br />
+                如果写入权限为支持的话基本这个空间才可以正常使用。
+            </td>
+        </tr>
+        <tr class="trTitle"> 
+            <td colspan="2">服务器基本信息</td>
+        </tr>
+        <tr>
+            <td>服务器名称：</td>
+            <td>@Server.MachineName.ToString()</td>
+        </tr>
+        <tr> 
+            <td>操作系统：</td>
+            <td>@Environment.OSVersion.ToString()</td>
+        </tr>
+        <tr>
+            <td>服务器现在时间：</td>
+            <td>@DateTime.Now.ToString("yyyy年MM月dd日 HH时mm分ss秒")</td>
+        </tr>
+        <tr>
+            <td>服务器IP：</td>
+            <td>@Request.ServerVariables["LOCAL_ADDR"]</td>
+        </tr>
+        <tr>
+            <td>服务器MAC：</td>
+            <td>Unknown</td>
+        </tr>
+        <tr>
+            <td>服务器域名：</td>
+            <td>@Request.ServerVariables["SERVER_NAME"]</td>
+        </tr>
+        <tr>
+            <td>服务器端口：</td>
+            <td>@Request.ServerVariables["SERVER_PORT"]</td>
+        </tr>
+        <tr>
+            <td>服务器CPU数量：</td>
+            <td>@Environment.GetEnvironmentVariable("NUMBER_OF_PROCESSORS")</td>
+        </tr>
+        <tr>
+            <td>服务器CPU结构：</td>
+            <td>@Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE")</td>
+        </tr>        
+	    <tr>
+            <td>服务器语言：</td>
+            <td>@Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"]</td>
+        </tr>
+        <tr>
+            <td>Session总数：</td>
+            <td>@Session.Contents.Count.ToString()</td>
+        </tr>
+        <tr>
+            <td>Application总数：</td>
+            <td>@ApplicationInstance.Application.Count</td>
+        </tr>
+        <tr> 
+            <td>dotNetFramework 版本：</td>
+            <td>@Environment.Version.ToString()</td>
+        </tr>        
+        <tr class="trTitle"> 
+            <td colspan="2">服务器其它信息</td>
+        </tr>
+        <tr> 
+            <td>当前执行用户：</td>
+            <td>@Environment.UserName</td>
+        </tr>
+        <tr> 
+            <td>系统安装目录：</td>
+            <td>@Environment.GetEnvironmentVariable("windir")</td>
+        </tr>
+        <tr> 
+            <td>系统临时目录：</td>
+            <td>@Environment.GetEnvironmentVariable("TEMP")</td>
+        </tr>
+        <tr> 
+            <td>IIS版本：</td>
+            <td>@Request.ServerVariables["SERVER_SOFTWARE"]</td>
+        </tr>
+        <tr> 
+            <td>CGI版本：</td>
+            <td>@Request.ServerVariables["GATEWAY_INTERFACE"]</td>
+        </tr>
+        <tr> 
+            <td>SSL支持：</td>
+            <td>@Request.ServerVariables["HTTPS"]</td>
+        </tr>
+        <tr>
+            <td>服务端脚本执行超时：</td>
+            <td>
+                @{
+                    int strServerTimeout = Server.ScriptTimeout;
+                    <span>@string.Format("{0} 秒，{1} 分钟，{2} 小时", strServerTimeout, strServerTimeout / 60, strServerTimeout / 60 / 60)</span>
+                }            
+            </td>
+        </tr>
+        <tr> 
+            <td>总运行时间：</td>
+            <td>@Math.Round(Convert.ToDecimal(Environment.TickCount / 600 / 60))/ 100 小时</td>
+        </tr>
+        <tr> 
+            <td>物理相对路径：</td>
+            <td>@Request.ServerVariables["PATH_INFO"]</td>
+        </tr>
+        <tr> 
+            <td>物理绝对路径：</td>
+            <td>@Request.ServerVariables["APPL_PHYSICAL_PATH"]</td>
+        </tr>
+        <tr> 
+            <td>已使用内存：</td>
+            <td>@(Environment.WorkingSet / 1024 / 1024) MB</td>
+        </tr>
+        <tr> 
+            <td>主机所在域（工作组）：</td>
+            <td>@Environment.GetEnvironmentVariable("USERDOMAIN")</td>
+        </tr>
+        <tr class="trTitle"> 
+            <td colspan="2">系统相关组件信息（IIS、ASP）</td>
+        </tr>
+        <tr>
+            <td>Access数据库组件：</td>
+            <td>
+                @RequestHelper.SubassemblyCheck("ADODB.RecordSet")
+                【版本：@RequestHelper.SubassemblyAssembly("ADODB.RecordSet")】
+            </td>
+        </tr>
+        <tr>
+            <td>FSO文件操作组件：</td>
+            <td>
+                @RequestHelper.SubassemblyCheck("Scripting.FileSystemObject")
+                【版本：@RequestHelper.SubassemblyAssembly("Scripting.FileSystemObject")】
+            </td>
+        </tr>        
+        <tr class="trTitle"> 
+            <td colspan="2">邮件相关组件信息</td>
+        </tr>
+        <tr>
+            <td>JMAIL邮件发送组件 ：</td>
+            <td>                
+                @RequestHelper.SubassemblyCheck("JMail.SmtpMail")
+                【版本：@RequestHelper.SubassemblyAssembly("JMail.SmtpMail")】
+            </td>
+        </tr>
+        <tr>
+            <td>CDONTS邮件发送组件 ：</td>
+            <td>
+                @RequestHelper.SubassemblyCheck("CDONTS.NewMail")
+                【版本：@RequestHelper.SubassemblyAssembly("CDONTS.NewMail")】
+            </td>
+        </tr>
+        <tr class="trTitle"> 
+            <td colspan="2">图像相关组件信息</td>
+        </tr>
+        <tr>
+            <td>AspJpeg组件 ：</td>
+            <td>
+                @RequestHelper.SubassemblyCheck("Persits.Jpeg")
+                【版本：@RequestHelper.SubassemblyAssembly("Persits.Jpeg")】
+            </td>
+        </tr>	
+        <tr class="trTitle"> 
+            <td colspan="2">文件上传组件</td>
+        </tr>
+        <tr>
+            <td>ASPUpload上传组件 ：</td>
+            <td>
+                @RequestHelper.SubassemblyCheck("Persits.Upload.1")
+                【版本：@RequestHelper.SubassemblyAssembly("Persits.Upload.1")】
+            </td>
+        </tr>
+        <tr class="trTitle"> 
+            <td colspan="2">自定义组件</td>
+        </tr>	
+        <tr>
+        <td>自定义组件查询：</td>
+        <td>
+            <input type="text" id="txtCustomObj" name="txtCustomObj" />
+            <input type="button" id="btnCustomObj" name="btnCustomObj" value="检测组件" onclick="javascript: alert('逗你玩！');" />
+            
+            <br /><br />此处必须使用组件的ProgId或ClassId来检测
+        </td>
+        </tr>	
+        <tr class="trTitle"> 
+            <td colspan="2">客户端相关信息（当前访问用户）</td>
+        </tr>	
+        <tr>
+            <td>访客IP地址：</td>
+            <td>@RequestHelper.GetIPAddress()</td>
+        </tr>
+        <tr>
+            <td>访客操作系统：</td>
+            <td>@Request.Browser.Platform</td>
+        </tr>
+        <tr>
+            <td>访客所使用浏览器：</td>
+            <td>@Request.Browser.Browser</td>
+        </tr>	  
+        <tr>
+            <td>访客浏览器版本：</td>
+            <td>@Request.Browser.Version</td>
+        </tr>	  
+        <tr>
+            <td>是否支持 JavaScript：</td>
+            <td>@Request.Browser.JavaApplets</td>
+        </tr>
+        <tr>
+            <td>是否支持 VBScript：</td>
+            <td>@Request.Browser.VBScript</td>
+        </tr>	  
+        <tr>
+            <td>是否支持 JavaApplets：</td>
+            <td>@Request.Browser.JavaApplets</td>
+        </tr>	  
+        <tr>
+            <td>是否支持 Cookies：</td>
+            <td>@Request.Browser.Cookies</td>
+        </tr>	  
+        <tr>
+            <td>访客语言环境：</td>
+            <td>@Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"]</td>
+        </tr>	  
+        <tr>
+            <td>Frames（分栏）:</td>
+            <td>@Request.Browser.Frames</td>
+        </tr>
+        <tr class="trTitle"> 
+            <td colspan="2">服务器性能测试（刷新本页重新测试）</td>
+        </tr>
+        <tr>
+            <td>本页执行时间：</td>
+            <td>
+                @{
+                    DateTime etime = DateTime.Now;
+                    <span>@((etime - stime).TotalMilliseconds) 毫秒</span>
+                }
+                【打开本页面的速度测试】
+            </td>
+        </tr>
+        <tr>
+            <td>整数运算测试：</td>
+            <td>
+                @{
+                    DateTime ontime1 = DateTime.Now;
+                    int sum = 0;
+                    for (int i = 1; i <= 10000000; i++)
+                    {
+                        sum = sum + i;
+                    }
+                    DateTime endtime1 = DateTime.Now;
+                    <span>@((endtime1 - ontime1).TotalMilliseconds) 毫秒</span>
+                }
+                【进行100万次加法运算】
+            </td>
+        </tr>
+        <tr>
+            <td>浮点运算测试：</td>
+            <td>
+                @{
+                    DateTime ontime2 = DateTime.Now;
+                    long k = 2;
+                    for (int a = 1; a < 1000000; a++)
+                    {
+                        k = k * k;
+                    }
+                    DateTime endtime2 = DateTime.Now;
+                    <span>@((endtime2 - ontime2).TotalMilliseconds) 毫秒</span>
+                 }
+                【进行100万次开方运算】
+            </td>
+        </tr>
+    </tbody>
+</table>

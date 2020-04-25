@@ -1,0 +1,43 @@
+﻿@model DawnAuthUserMDL
+@{
+    ViewBag.Title = "管理员个人信息";
+    ViewBag.MIndex = 0;
+    ViewBag.CIndex = 0;
+    ViewBag.BodyTitle = "管理员个人详细信息";
+    Layout = "~/Views/Shared/_LayoutEditor.cshtml";
+}
+@section Functions{
+    <li><input class="button" type="button" value="回到首页" onclick="GotoHref('@MenuHandler.UrlDesktop');" /></li>
+}
+@if (Model == null || Model.UserId <= 0)
+{    
+    @Html.Partial("_PartialJump")
+}
+else
+{
+    @Html.AntiForgeryToken()
+    <div class="field-item">
+        <label>管理级别：</label>
+        @Html.DropDownList("ddlGrade", UserHandler.GetSelectList(Model.UserGrade), new { @class="percent25", disabled = "disabled" })
+    </div>
+    <div class="field-item">
+        <label>管理员姓名：</label>
+        @Html.TextBox("txtSurname", Model.UserSurname, new { @class = "input-text percent25", maxlength = "4", disabled = "disabled" })
+    </div>
+    <div class="field-item">
+        <label>账号名称：</label>
+        @Html.TextBox("txtName", Model.UserName, new { @class = "input-text percent25", maxlength = "16", disabled = "disabled" })
+    </div>    
+    <div class="field-item">
+        <label>手机号码：</label>
+        @Html.TextBox("txtMobile", Model.UserMobile, new { @class = "input-text percent25", maxlength = "15", disabled = "disabled" })
+    </div>
+    <div class="field-item">
+        <label>电子邮箱：</label>
+        @Html.TextBox("txtEmail", Model.UserEmail, new { @class = "input-text percent25", maxlength = "50", disabled = "disabled" })
+    </div>
+    <div class="field-item">
+        <label>管理员描述：</label>
+        @Html.TextArea("txtDesc", Model.UserDesc, new { @class = "input-text percent50", maxlength = "300", disabled = "disabled" })
+    </div>
+}

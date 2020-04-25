@@ -1,0 +1,41 @@
+﻿@model IList<DawnAuthModuleMDL>
+@{
+    ViewBag.Title = "模块信息目录树";
+    ViewBag.BodyTitle = "模块信息目录树";
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+    int first = 0;
+}
+@section Functions{
+    <li><input class="button" type="button" value="猛击？" onclick="DawnPopTips(MsgNothing);" /></li>
+}
+@if (Model == null || Model.Count <= 0)
+{    
+    <div id="dataShowArea">
+        <label>暂无数据，请添加。</label>
+    </div>
+}
+else
+{
+    <div class="margin-top-20 margin-bottom-10 margin-left-30 margin-right-10">
+        @foreach (var item in Model)
+        {
+            if (first == 0)
+            {
+                <div class="margin-bottom-10">
+                    <div class="float-left"><strong class="color-blue">@item.MdlName</strong></div>
+                    <div class="float-left padding-left-30">@item.MdlDesc</div>
+                    <div class="clearfix"></div>
+                </div>
+            }
+            else
+            {
+                <div class="margin-bottom-10">
+                    <div class="float-left">@item.MdlName</div>
+                    <div class="float-left padding-left-30">@item.MdlDesc</div>
+                    <div class="clearfix"></div>
+                </div>
+            }
+            first++;
+        }
+    </div>
+}

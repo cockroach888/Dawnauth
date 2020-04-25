@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "注销登录";
+    ViewBag.MIndex = 1;
+    ViewBag.CIndex = 1;
+    ViewBag.BodyTitle = "注销登录";
+}
+@section Functions{
+    <li><input class="button" type="button" value="猛击也无效" /></li>
+}
+<input type="hidden" id="SiteLoginUrl" value="@GeneralHandler.SiteLoginUrl" />
+@section Scripts{
+    <script type="text/javascript">
+        DawnPopConfirm('是否清除保存的[用户名]和[密码]？', function () {
+            $.clearCookie();
+            top.location.href = $('#SiteLoginUrl').val();
+        }, function () {
+            top.location.href = $('#SiteLoginUrl').val();
+        });
+    </script>
+}

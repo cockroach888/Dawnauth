@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "模块功能添加";
+    ViewBag.MIndex = 5;
+    ViewBag.CIndex = 2;
+    ViewBag.BodyTitle = "模块功能信息数据添加";
+    Layout = "~/Views/Shared/_LayoutEditor.cshtml";
+}
+@section Functions{
+    <li><input class="button" type="button" value="保 存" onclick="dataSave();" /></li>
+    <li><input class="button" type="button" value="取 消" onclick="GotoHref('/Function/List/1');" /></li>
+}
+@Html.AntiForgeryToken()
+<div class="field-item">
+    <label>隶属模块：</label>
+    @Html.DropDownList("ddlModule", ModuleHandler.GetSelectList(0), new { @class="percent25" })
+    <span class="color-red padding-top-3">*</span>
+    <span id="icoModule" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoModule" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>隶属功能：</label>    
+    @Html.DropDownList("ddlParentMark", FunctionHandler.GetSelectList(), new { @class="percent25",onchange="dataChange(this.value);" })
+    <span class="color-red padding-top-3">*</span>
+    <span id="icoParentMark" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoParentMark" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>常规选项：</label>
+    <ul>
+        <li><a href="javascript:void(0);" onclick="dataRoutine(0);">站务管理</a></li>
+        <li><a href="javascript:void(0);" onclick="dataRoutine(1);">模块访问</a></li>
+        <li><a href="javascript:void(0);" onclick="dataRoutine(2);">数据列表</a></li>
+        <li><a href="javascript:void(0);" onclick="dataRoutine(3);">数据添加</a></li>
+        <li><a href="javascript:void(0);" onclick="dataRoutine(4);">数据编辑</a></li>
+        <li><a href="javascript:void(0);" onclick="dataRoutine(5);">数据删除</a></li>
+        <li><a href="javascript:void(0);" onclick="dataRoutine(6);">数据归档</a></li>
+        <li><a href="javascript:void(0);" onclick="dataRoutine(7);">数据清空</a></li>
+        <li><a href="javascript:void(0);" onclick="dataRoutine(8);">数据流程</a></li>
+    </ul>
+</div>
+<div class="field-item">
+    <label>功能名称：</label>
+    @Html.TextBox("txtName", null, new { @class = "input-text percent25", maxlength = "50" })
+    <span class="color-red padding-top-3">*</span>
+    <span id="icoName" class="margin-left-1em"></span>    
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoName" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>功能编码：</label>
+    @Html.TextBox("txtCode", null, new { @class = "input-text percent25", maxlength = "50" })
+    <span id="icoCode" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoCode" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>模块识别码：</label>
+    @Html.TextBox("txtIdent", 0, new { @class = "input-text percent25", maxlength = "8" })
+    <span id="icoIdent" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoIdent" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>功能描述：</label>
+    @Html.TextArea("txtDesc", new { @class = "input-text percent50", maxlength = "300" })
+    <span id="icoDesc" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoDesc" class="color-blue"></span>
+</div>
+<div class="field-item">&nbsp;</div>
+@section Scripts{
+    <script src="@Scripts.Url("~/Scripts/function/add.js")" type="text/javascript"></script>
+}

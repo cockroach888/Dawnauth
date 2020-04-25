@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "权限扩展添加";
+    ViewBag.MIndex = 8;
+    ViewBag.CIndex = 2;
+    ViewBag.BodyTitle = "权限扩展数据添加";
+    Layout = "~/Views/Shared/_LayoutEditor.cshtml";
+}
+@section Functions{
+    <li><input class="button" type="button" value="保 存" onclick="dataSave();" /></li>
+    <li><input class="button" type="button" value="取 消" onclick="GotoHref('/Extent/List/1');" /></li>
+}
+@Html.AntiForgeryToken()
+<div class="field-item">
+    <label>扩展编码：</label>
+    @Html.TextBox("txtCode", null, new { @class = "input-text percent25", maxlength = "100" })
+    <span class="color-red padding-top-3">*</span>
+    <span id="icoCode" class="margin-left-1em"></span>
+    @Html.DropDownList("sltCodeItem", ExtentHandler.GetSelectList(), new { @class="percent15",onchange="dataChange(this.value);" })
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoCode" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>编码名称：</label>
+    @Html.TextBox("txtCodeName", null, new { @class = "input-text percent25", maxlength = "200" })
+    <span class="color-red padding-top-3">*</span>
+    <span id="icoCodeName" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoCodeName" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>扩展标识：</label>
+    @Html.TextBox("txtMark", null, new { @class = "input-text percent25", maxlength = "100" })
+    <span class="color-red padding-top-3">*</span>
+    <span id="icoMark" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoMark" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>标识名称：</label>
+    @Html.TextBox("txtMarkName", null, new { @class = "input-text percent25", maxlength = "200" })
+    <span class="color-red padding-top-3">*</span>
+    <span id="icoMarkName" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoMarkName" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>扩展备注：</label>
+    @Html.TextArea("txtMemo", new { @class = "input-text percent50", maxlength = "500" })
+    <span id="icoMemo" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoMemo" class="color-blue"></span>
+</div>
+<div class="field-item">&nbsp;</div>
+@section Scripts{
+    <script src="@Scripts.Url("~/Scripts/extent/add.js")" type="text/javascript"></script>
+}

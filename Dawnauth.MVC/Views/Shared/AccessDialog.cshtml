@@ -1,0 +1,17 @@
+﻿@model HandleErrorInfo
+@{
+    ViewBag.Title = "系统提示";
+    ViewBag.MIndex = 0;
+    ViewBag.CIndex = 0;
+    ViewBag.BodyTitle = "访问受限或访问异常，请重试或联系管理员！";
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+}
+@section Functions{
+    <li><input class="button" type="button" value="猛击？" onclick="DawnPopTips(MsgNothing);" /></li>
+}
+<div class="notification error">
+    <div id="tab-content-tips">
+        <div class="error-title">@ViewBag.ErrorTitle</div>
+        <div class="error-message">@ViewBag.ErrorMessage</div>
+    </div>
+</div>

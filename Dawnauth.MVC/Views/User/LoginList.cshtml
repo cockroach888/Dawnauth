@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DawnAuthUserLoginMDL>
+@{
+    ViewBag.Title = "登录信息管理";
+    ViewBag.MIndex = 1;
+    ViewBag.CIndex = 2;
+    ViewBag.BodyTitle = "当前管理员 [" + DawnauthHandler.UserSurname + "] 登录信息数据列表";
+    var FPager = ViewBag.FPager as PagerHelperCHS;
+    var FPageCurrent = TypeHelper.TypeToInt32(ViewBag.PageCurrent, 1);
+}
+@section Functions{
+    <li><input class="button" type="button" value="刷 新" onclick="location.reload();" /></li>
+}
+@Html.AntiForgeryToken()
+<div class="tab-content default-tab" id="tab1">
+    <table id="table-thead">
+        <thead>
+            <tr>
+                <th class="per20">登录时间</th>
+                <th class="per15">IP地址</th>
+                <th class="per15">MAC地址</th>
+                <th class="per15">计算机名称</th>
+                <th class="per30">附加信息</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="table-tbody">
+        <table>
+            <tbody id="dataShowArea">                                        
+                @foreach (var item in Model) {
+                    <tr>
+                        <td class="per20">@item.LogTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                        <td class="per15">@item.LogIp</td>
+                        <td class="per15">@ChangeHelper.ContentState(item.LogMac.ToUpper())</td>
+                        <td class="per15">@ChangeHelper.ContentState(item.LogComputer)</td>
+                        <td class="per30">@ChangeHelper.ContentState(item.LogAttach)</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="table-tfoot">
+        @Html.Raw(FPager.ShowPagerByScriptByNumeric("/User/LoginList/", null, true, PagerType.Mvc))
+    </div>
+</div>

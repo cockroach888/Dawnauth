@@ -1,0 +1,19 @@
+﻿@if (Request.IsAuthenticated) {
+    <text>
+        <p>您好：<a href="/User/MyProfile" title="猛击！查看个人资料">@DawnauthHandler.UserSurname</a> 欢迎使用！</p>
+        <p><span id="clock" class="color-white"></span></p>
+        <p>
+            <a href="/Auth/Exit" title="猛击！退出系统">退出系统</a> | 
+            <a href="javascript:void(0);" onclick="DawnPopIFrame('当前管理员密码修改', '/User/Password');" title="猛击！修改密码">修改密码</a> | 
+            <a href="/Auth/Logout" title="猛击！注销登录">注销登录</a>
+        </p>
+    </text>
+} else {
+    <text>
+        <p>未登录</p>
+        <p><span id="clock" class="color-white"></span></p>
+        <p>
+            <a href="/Auth/Login" title="猛击！马上登录">猛击登录</a>
+        </p>
+    </text>
+}

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<DawnAuthDepartmentMDL>
+@{
+    ViewBag.Title = "单位部门管理";
+    ViewBag.MIndex = 7;
+    ViewBag.CIndex = 1;
+    ViewBag.BodyTitle = "单位部门数据列表";
+    var FPager = ViewBag.Pager as PagerHelperCHS;
+    var FPageCurrent = TypeHelper.TypeToInt32(ViewBag.PageCurrent, 1);
+    var FPagerParam = ViewBag.PagerParam as string;
+}
+@section Functions{
+    <li><input class="button" type="button" value="刷 新" onclick="location.reload();" /></li>
+}
+@Html.AntiForgeryToken()
+<div class="tab-content default-tab" id="tab1">    
+    <input type="hidden" id="hidPageCurrent" value="@FPageCurrent" />
+    <div id="table-search">
+        <div class="search-box">
+            <label>隶属部门：</label>
+            @Html.DropDownList("sltDepart", DepartHandler.GetSelectList(0), new { @class = "search-text1" })
+            <label>部门编码：</label>
+            <input class="input-text search-text1" type="text" id="txtCode" />
+            <input class="button" type="button" value="开始检索" onclick="onSearchGo();" />
+            <input class="button" type="button" value="清空检索" onclick="onSearchClear();" />
+            <span class="color-red f14 margin-left-10" id="searchTips"></span>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <table id="table-thead">
+        <thead>
+            <tr>
+                <th class="per15">部门名称</th>               
+                <th class="per15">部门编码</th>
+                <th class="per10">识别码</th>
+                <th class="per10">部门序列</th>
+                <th class="per10">部门统计</th>
+                <th class="per20">部门描述</th>
+                <th class="per15">数据操作</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="table-tbody">
+        <table>
+            <tbody id="dataShowArea">                                        
+                @foreach (var item in Model) {
+                    <tr>
+                        <td class="per15">@item.DptName</td>                        
+                        <td class="per15">@item.DptCode</td>
+                        <td class="per10">@item.DptIdent</td>
+                        <td class="per10">@item.DptRank</td>
+                        <td class="per10">@item.DptCounts</td>
+                        <td class="per20">@ChangeHelper.ContentState(item.DptDesc)</td>
+                        <td class="per15">
+                            <a class="color-blue" href="javascript:void(0);" onclick="dataTrees(@item.DptId,'@item.DptName');"><img src="~/Images/icons/side_tree.png" /> 目录树</a>
+                            @if (item.DptCounts <= 0)
+                            {
+                                <a class="color-red" href="javascript:void(0);" onclick="dataDelete(@item.DptId);"><img src="~/Images/icons/delete.png" /> 删除</a>
+                            }                            
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="table-tfoot">
+        @Html.Raw(FPager.ShowPagerByScriptByNumeric("/Depart/Search", FPagerParam, true, PagerType.Mvc))
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/js/validate")
+    <script src="@Scripts.Url("~/Scripts/depart/list.js")" type="text/javascript"></script>
+}

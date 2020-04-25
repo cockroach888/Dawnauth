@@ -1,0 +1,88 @@
+﻿@model IEnumerable<DawnAuthFunctionMDL>
+@{
+    ViewBag.Title = "模块功能管理";
+    ViewBag.MIndex = 5;
+    ViewBag.CIndex = 1;
+    ViewBag.BodyTitle = "模块功能数据列表";
+    var FPager = ViewBag.Pager as PagerHelperCHS;
+    var FPageCurrent = TypeHelper.TypeToInt32(ViewBag.PageCurrent, 1);
+    var FModuleList = ViewBag.ModuleList as IList<DawnAuthModuleMDL>;
+    var FPagerParam = ViewBag.PagerParam as string;
+}
+@section Functions{
+    <li><input class="button" type="button" value="刷 新" onclick="location.reload();" /></li>
+}
+@Html.AntiForgeryToken()
+<div class="tab-content default-tab" id="tab1">    
+    <input type="hidden" id="hidPageCurrent" value="@FPageCurrent" />
+    <div id="table-search">
+        <div class="search-box">
+            <label>隶属模块：</label>
+            @Html.DropDownList("sltModule", ModuleHandler.GetSelectList(0), new { @class = "search-text1" })
+            <label>功能编码：</label>
+            <input class="input-text search-text1" type="text" id="txtCode" />
+            <input class="button" type="button" value="开始检索" onclick="onSearchGo();" />
+            <input class="button" type="button" value="清空检索" onclick="onSearchClear();" />
+            <span class="color-red f14 margin-left-10" id="searchTips"></span>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <table id="table-thead">
+        <thead>
+            <tr>
+                <th class="per15">隶属模块</th>
+                <th class="per15">功能名称</th>
+                <th class="per15">功能编码</th>
+                <th class="per10">识别码</th>
+                <th class="per10">功能标识</th>
+                <th class="per20">功能描述</th>
+                <th class="per10">数据操作</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="table-tbody">
+        <table>
+            <tbody id="dataShowArea">                                        
+                @foreach (var item in Model) {
+                    <tr>
+                        <td class="per15">
+							@{
+								var moduleInfo = FModuleList.Where(p => p.MdlId == item.MdlId);
+								if (null == moduleInfo || moduleInfo.Count() < 1) {
+									<span>未配置</span>
+								}
+								else
+								{
+									<span>@moduleInfo.First().MdlName</span>
+								}
+							}
+                            <p class="color-orangered"><em>@ModuleHandler.GetFatherName(item.MdlId)</em></p>
+                        </td>
+                        <td class="per15">@item.FunName</td>
+                        <td class="per15">@item.FunCode</td>
+                        <td class="per10">@item.FunIdent</td>
+                        <td class="per10">@item.FunMark</td>
+                        <td class="per20">@ChangeHelper.ContentState(item.FunDesc)</td>
+                        <td class="per10">                        
+                            @if (FunctionHandler.IfDelete(item.FunId)) {
+                                <a class="color-red" href="javascript:void(0);" onclick="dataDelete(@item.FunId);"><img src="~/Images/icons/delete.png" /> 删除</a>
+							}
+							else {
+                                <span>无可用操作</span>
+							}
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+				}
+            </tbody>
+        </table>
+    </div>
+    <div id="table-tfoot">
+        @Html.Raw(FPager.ShowPagerByScriptByNumeric("/Function/Search", FPagerParam, true, PagerType.Mvc))
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/js/validate")
+    <script src="@Scripts.Url("~/Scripts/function/list.js")" type="text/javascript"></script>
+}

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<DawnAuthModuleMDL>
+@{
+    ViewBag.Title = "角色权限设定";
+    ViewBag.MIndex = 4;
+    ViewBag.CIndex = 1;
+    ViewBag.BodyTitle = "角色信息功能权限设定";
+    Layout = "~/Views/Shared/_LayoutEditor.cshtml";
+    int FPageCurrent = TypeHelper.TypeToInt32(ViewBag.PageCurrent, 1);
+    string FRoleCode = ViewBag.RoleCode as string;
+    int indexVal = 0;
+}
+@section Functions{
+    <li><input class="button" type="button" value="返 回" onclick="GotoHref('/Role/List/@FPageCurrent');" /></li>
+}
+@Html.AntiForgeryToken()
+<div class="margin-top-20 margin-left-20">
+    <ul id="moduleList" class="float-left list-box scroll-y wper30">
+        @foreach (var item in Model) {
+            <li class="bi"><input class="button-black" type="button" value="@item.MdlName" onclick="dataFunction(this,@item.MdlId,'@item.MdlCode');" /></li>
+        }
+    </ul>
+    <ul class="float-left margin-left-30 list-box" id="divFunArea">
+        <li class="field-item bi">
+            <label>请选择功能模块</label>
+        </li>
+    </ul>
+    <input type="hidden" id="hidRoleCode" value="@FRoleCode" />
+    <div class="clearfix"></div>
+</div>
+@section Scripts{
+    <script src="@Scripts.Url("~/Scripts/role/authority.js")" type="text/javascript"></script>
+}

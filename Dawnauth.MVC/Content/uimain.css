@@ -1,0 +1,120 @@
+﻿/* 正文区域定义
+--------------------------------------------------------------------------------*/
+#body-wrapper {
+    background: url('../images/bg-radial-gradient.gif') fixed 230px top no-repeat;
+}
+#body-content {
+    margin: 0 0 0 230px;
+}
+/* 头部内容区域 Header Content
+--------------------------------------------------------------------------------*/
+#header-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+/* 功能按钮区域
+----------------------------------------*/
+ul#header-function {
+    font-size: 16px;
+    font-weight: 600;
+    position: absolute;
+    right: 25px;
+    bottom: 5px;
+}
+    ul#header-function li {
+        display: inline;
+        list-style: none;
+        padding-left: 15px;
+    }
+        ul#header-function li .button {
+            width: auto;
+            padding: 5px 10px !important;
+            font-size: 12px !important;
+        }
+        ul#header-function li a {
+            background: none;
+            color: #666;
+            text-decoration: none;
+        }
+            ul#header-function li a:hover {
+                color: #333;
+                text-decoration: none;
+            }
+/* 主内容区域 Main Content
+--------------------------------------------------------------------------------*/
+#main-content {
+    padding: 3px !important;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+/* 内容盒子 Content Box
+--------------------------------------------------------------------------------*/
+.content-box {
+    border: 1px solid #ccc;
+    background: #fff;
+}
+/* 标题区域
+----------------------------------------*/
+.content-box-header {
+    background: #e5e5e5 url('../images/bg-content-box.gif') top left repeat-x;
+    height: 35px;
+    border-bottom: 1px solid #ccc;
+}
+    .content-box-header span {
+        padding: 10px 15px 10px;
+        float: left;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .content-box-header label {
+        padding: 15px 0 0 0;
+        float: left;
+    }
+    .content-box-header a {
+        padding: 15px 5px 0 5px;
+        float: left;
+    }
+/* 多标签区域
+----------------------------------------*/
+ul.content-box-tabs {
+    float: right;
+    padding: 10px 15px 0 0 !important;
+    margin: 0 !important;
+}
+    ul.content-box-tabs li {
+        float: left;
+        margin: 0;
+        padding: 0 !important;
+        background-image: none !important;
+    }
+        ul.content-box-tabs li a {
+            color: #333;
+            padding: 6.5px 20px;
+            display: block;
+            margin: 1px;
+            border-bottom: 0;
+        }
+            ul.content-box-tabs li a:hover {
+                color: #57a000;
+            }
+            ul.content-box-tabs li a.current {
+                background: #fff;
+                border: 1px solid #ccc;
+                border-bottom: 0;
+                margin: 0;
+            }
+/* 正文区域
+----------------------------------------*/
+.content-box-content {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.content-box-content .tab-content {
+    font-size: 13px;
+    padding: 10px 5px 0 5px;
+}

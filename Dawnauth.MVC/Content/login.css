@@ -1,0 +1,112 @@
+﻿/* 主内容区域 Main Content
+--------------------------------------------------------------------------------*/
+h1 {
+    padding: 0;
+}
+header {
+    height: inherit;
+    overflow: inherit;
+}
+footer {
+    clear: both;
+    bottom: 0;
+	width: 100%;       
+    text-align: center;
+    padding: inherit;
+    background-color: inherit;
+    color: inherit;
+    height: 16px;
+    line-height: 16px;
+    overflow: inherit;
+}
+/* 登录页面通知
+Notification for login page
+----------------------------------------*/
+#login-wrapper #login-content .notification {
+    border: 0;
+    margin: 0 0 15px 0 !important;
+    background-position: 10px 13px !important;
+    background-color: #141414;
+    color: #fff !important;
+    width: 99.8% !important;
+}
+/* 登录页面 Login Page
+--------------------------------------------------------------------------------*/
+body#login {    
+    background: #222 url('../images/bg-login.gif');
+}    
+#login-wrapper {
+    background: url('../images/bg-login-top.png') top left repeat-x;
+    color: #fff;
+}
+#login-top {
+    width: 100%;
+    padding: 140px 0 50px 0;
+    text-align: center;
+}
+#login-content {
+    font-size: 14px;
+    text-align: left;
+    width: 300px;
+    margin: 0 auto;
+}
+    #login-content label {
+        color: #fff;
+        font-weight: normal;
+        float: left;
+        width: 70px;
+        padding: 0;
+    }
+    #login-content input {
+        width: 200px;
+        float: right;
+        margin: 0 0 20px 0;
+        border: 0;
+        background: #fff;
+    }
+    #login-content p {
+        padding: 0;
+    }
+    #login-content img {
+        margin-left: 90px;
+    }
+    #login-content .code-change {
+        padding-left: 10px;
+        height: 28px;
+        line-height: 28px;
+        vertical-align: top;
+    }
+    #login-content #remember-password {
+        float: right;
+    }
+        #login-content #remember-password input {
+            float: none;
+            width: auto;
+            border: 0;
+            background: none;
+            margin: 0 5px 0 0;
+        }
+    #login-content .button {
+        width: auto;
+        margin-top: 20px;
+    }
+/* 表单 Forms
+--------------------------------------------------------------------------------*/
+form label {
+    display: block;
+    padding: 0 0 10px;
+    font-weight: bold;
+}
+form input.input-text {
+    padding: 6px !important;
+    font-size: 13px !important;
+    background: #fff url('../images/bg-form-field.gif') top left repeat-x !important;
+    border: 1px solid #d5d5d5 !important;
+    color: #333 !important;
+}
+form input[type="checkbox"] {
+    padding: 0;
+    background: none;
+    border: 0;
+    vertical-align: middle;
+}

@@ -1,0 +1,83 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zh">
+    <head>    
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta charset="utf-8" />
+        <title>登录 - @GeneralHandler.SiteName</title>
+        <link href="~/favicon.ico" rel="icon" type="image/x-icon" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/css/login")
+        @Scripts.Render("~/js/modernizr")
+        <script src="@Scripts.Url("~/Scripts/public/AC_RunActiveContent.js")" type="text/javascript"></script>
+    </head>
+    <body id="login">
+        <fieldset>
+            <legend>by: <a href="http://www.dawnxz.com" target="_blank">晨曦小竹</a></legend>
+            <div id="login-wrapper">
+                <header>
+                    <div class="pa" style="bottom: 1%; left: 1%;">
+                        <script type="text/javascript">
+                            AC_FL_RunContent('codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0', 'width', '650', 'height', '150', 'src', 'images/pigeon', 'quality', ' ', 'wmode', 'transparent', 'pluginspage', 'http://www.macromedia.com/go/getflashplayer', 'movie', 'images/pigeon'); //end AC code
+                        </script>
+                        <noscript>
+                            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" style="width: 650px; height: 150px">
+                                <param name="movie" value="images/pigeon.swf" />
+                                <param name="quality" value="high" />
+                                <embed src="images/pigeon.swf" quality="high" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="650" height="150"></embed>
+                            </object>
+                        </noscript>
+                    </div>                    
+                    <div id="login-top">
+			            <h1 class="pa ti">@GeneralHandler.SiteName</h1>
+			            <a href="http://www.dawnxz.com"><img id="logo" src="/images/logo.png" alt="@GeneralHandler.SiteName" /></a>
+		            </div>
+                </header>
+                <div id="login-content">
+                    <form method="post">
+                        @Html.AntiForgeryToken()
+	                    <div class="notification information">
+		                    <div id="info-tips">输入用户名、密码、验证码，猛击[登录]</div>
+	                    </div>
+	                    <p>
+		                    <label>用户名：</label>
+		                    <input class="input-text" type="text" id="txt-uname" />
+	                    </p>
+	                    <div class="clearfix"></div>
+	                    <p>
+		                    <label>密　码：</label>
+		                    <input class="input-text" type="password" id="txt-upwd" />
+	                    </p>
+                        <div class="clearfix"></div>
+                        <p class="margin-bottom-5">
+                            <img class="cp" id="img-checkcode" alt="猛击更换！" title="猛击更换！" src="/Auth/CheckCode" />
+                            <span class="code-change cp">看不清？猛击！</span>
+                        </p>
+                        <div class="clearfix"></div>
+                        <p>
+		                    <label>验证码：</label>                        
+		                    <input class="input-text" type="text" id="txt-checkcode" />                    
+	                    </p>                
+	                    <div class="clearfix"></div>
+	                    <p id="remember-password">
+                            <input type="checkbox" id="remember-long" value="0" />
+                            <span class="remember cp">记住我？<em class="color-red">（仅限个人电脑，请谨慎）</em></span>
+	                    </p>
+	                    <div class="clearfix"></div>
+	                    <p>
+		                    <input class="button" type="button" value="登 录" />
+                            <input type="hidden" id="hidReturnUrl" value="@ViewBag.ReturnUrl" />
+	                    </p>
+                    </form>
+		        </div>
+                <footer>
+                    &copy; @DateTime.Now.Year - @GeneralHandler.SiteName by <a href="http://www.dawnxz.com" target="_blank">晨曦小竹</a>
+                </footer>                
+            </div>
+        </fieldset>
+        @Scripts.Render("~/js/jquery", "~/js/login")
+    </body>
+</html>

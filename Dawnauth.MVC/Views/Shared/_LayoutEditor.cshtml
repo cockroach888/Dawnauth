@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - @GeneralHandler.SiteName</title>
+        <link href="~/favicon.ico" rel="icon" type="image/x-icon" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="save" content="history" />
+        @Styles.Render("~/css/editor", "~/css/art")
+        @Scripts.Render("~/js/modernizr")
+        @RenderSection("Heads", required: false)
+    </head>
+    <body>
+        <fieldset>
+            <legend>by: <a href="http://www.dawnxz.com" target="_blank">晨曦小竹</a></legend>
+            @Html.Partial("_PartialNoscript")
+            <div id="body-wrapper">
+                @Html.Partial("_PartialMenu")
+                <div id="body-content">
+                    <header>
+                        <div id="header-content">
+                            <ul id="header-function">
+                                @RenderSection("Functions", required: false)
+                            </ul>                            
+                        </div>
+                        <div class="clearfix"></div>
+                    </header>
+                    <div id="main-content">
+                        <div class="content-box">
+                            <div class="content-box-header">
+                                <span>@ViewBag.BodyTitle</span>
+                                @RenderSection("ContentTabs", required: false)
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="content-box-content">
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                    @Html.Partial("_PartialFooter")
+                </div>
+            </div>
+        </fieldset>
+        @Scripts.Render("~/js/jquery", "~/js/art", "~/js/editor", "~/js/validate")
+        @RenderSection("Scripts", required: false)
+    </body>
+</html>

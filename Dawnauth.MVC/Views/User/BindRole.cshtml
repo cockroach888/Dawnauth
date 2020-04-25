@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DawnAuthRoleMDL>
+@{
+    ViewBag.Title = "角色绑定";
+    ViewBag.BodyTitle = "管理员角色分配";
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+    int FUserId = TypeHelper.TypeToInt32(ViewBag.UserId, 0);
+    var FUserBindRole = ViewBag.UserBindRole as IList<DawnAuthUserRoleMDL>;
+    int indexVal = 0;
+}
+@section Functions{
+    <li><input class="button" type="button" value="猛击？" onclick="DawnPopTips(MsgNothing);" /></li>
+}
+@Html.AntiForgeryToken()
+<div class="margin-top-20 margin-left-20">
+    <ul>
+        @foreach (var item in Model)
+        {
+            indexVal++;
+            <li class="field-item bi">
+                <label>@item.RoleName</label>
+                @if (FUserBindRole != null && FUserBindRole.Count(p => p.RoleId == item.RoleId) > 0)
+                {
+                    <input class="switch-on" type="button" id='@string.Format("btn{0}", indexVal)' onclick="dataUnSave(@indexVal,@FUserId,@item.RoleId);" />
+                }
+                else
+                {
+                    <input class="switch-off" type="button" id='@string.Format("btn{0}", indexVal)' onclick="dataSave(@indexVal,@FUserId,@item.RoleId);" />
+                }
+            </li>
+        }
+    </ul>
+    <input type="hidden" id="hidUserId" value="@FUserId" />
+</div>
+@section Scripts{
+    <script src="@Scripts.Url("~/Scripts/user/bind-role.js")" type="text/javascript"></script>
+}

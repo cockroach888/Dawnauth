@@ -1,0 +1,68 @@
+﻿@model IEnumerable<DawnAuthUserMDL>
+@{
+    ViewBag.Title = "管理员信息管理";
+    ViewBag.MIndex = 2;
+    ViewBag.CIndex = 1;
+    ViewBag.BodyTitle = "管理员信息数据列表";
+    var FPager = ViewBag.FPager as PagerHelperCHS;
+    var FPageCurrent = TypeHelper.TypeToInt32(ViewBag.PageCurrent, 1);
+    var FDepartList = ViewBag.FDepartList as IList<DawnAuthDepartmentMDL>;
+}
+@section Functions{
+    <li><input class="button" type="button" value="刷 新" onclick="location.reload();" /></li>    
+}
+@Html.AntiForgeryToken()
+<div class="tab-content default-tab" id="tab1">    
+    <input type="hidden" id="hidPageCurrent" value="@FPageCurrent" />
+    <table id="table-thead">
+        <thead>
+            <tr>
+                <th class="per5">状态</th>
+                <th class="per5">级别</th>
+                <th class="per10">隶属部门</th>
+                <th class="per10">用户姓名</th>
+                <th class="per10">账号名称</th>
+                <th class="per15">手机号码</th>
+                <th class="per20">电子邮箱</th>
+                <th class="per25">用户描述</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="table-tbody">
+        <table>
+            <tbody id="dataShowArea">                                        
+                @foreach (var item in Model) {
+                    <tr class="cp" onclick="ShowOperate(this,@item.UserId,'@item.UserSurname','@item.UserName','@DawnauthHandler.UserName');">
+                        <td class="per5">@ChangeHelper.BaseState(item.UserStatus)</td>
+                        <td class="per5">@ChangeHelper.GradeState(item.UserGrade)</td>
+                        @if (null == FDepartList || FDepartList.Count < 1)
+                        {
+                            <td class="per10">未划分</td>
+                        }
+                        else
+                        {
+                            var depart = FDepartList.Where(p => p.DptId == item.DptId);
+							if (null == depart || depart.Count() < 1) {
+								<td class="per10">未划分</td>
+							}
+							else {
+								<td class="per10">@depart.First().DptName</td>
+							}
+                        }                      
+                        <td class="per10">@item.UserSurname</td>
+                        <td class="per10">@item.UserName</td>
+                        <td class="per15">@item.UserMobile</td>
+                        <td class="per20">@item.UserEmail</td>
+                        <td class="per25">@ChangeHelper.ContentState(item.UserDesc)</td>
+                    </tr>
+				}
+            </tbody>
+        </table>
+    </div>
+    <div id="table-tfoot">
+        @Html.Raw(FPager.ShowPagerByScriptByNumeric("/User/List", null, true, PagerType.Mvc))
+    </div>
+</div>
+@section Scripts{
+    <script src="@Scripts.Url("~/Scripts/user/list.js")" type="text/javascript"></script>
+}

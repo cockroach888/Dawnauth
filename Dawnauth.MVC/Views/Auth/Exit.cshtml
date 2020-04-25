@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "退出系统";
+    ViewBag.MIndex = 1;
+    ViewBag.CIndex = 1;
+    ViewBag.BodyTitle = "退出系统";
+}
+@section Functions{
+    <li><input class="button" type="button" value="猛击也无效" /></li>
+}
+@section Scripts{
+    <script type="text/javascript">
+        DawnPopConfirm('是否清除保存的[用户名]和[密码]？', function () {
+            $.clearCookie();
+            top.window.close();
+        }, function () {
+            top.window.close();
+        });
+    </script>
+}

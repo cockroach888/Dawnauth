@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "新增角色信息";
+    ViewBag.BodyTitle = "角色信息数据添加";
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+}
+@section Functions{
+    <li><input class="button" type="button" value="保 存" onclick="dataSave();" /></li>
+}
+@Html.AntiForgeryToken()
+<div class="field-item">
+    <label>角色名称：</label>
+    @Html.TextBox("txtName", null, new { @class = "input-text percent25", maxlength = "50" })
+    <span class="color-red padding-top-3">*</span>
+    <span id="icoName" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoName" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>角色编码：</label>
+    @Html.TextBox("txtCode", null, new { @class = "input-text percent25", maxlength = "50" })
+    <span id="icoCode" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoCode" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>角色描述：</label>
+    @Html.TextArea("txtDesc", new { @class = "input-text percent50", maxlength = "300" })
+    <span id="icoDesc" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoDesc" class="color-blue"></span>
+</div>
+<div class="field-item">&nbsp;</div>
+@section Scripts{
+    <script src="@Scripts.Url("~/Scripts/role/add.js")" type="text/javascript"></script>
+}

@@ -1,0 +1,86 @@
+﻿@{
+    Layout = null;
+}
+@* 基本状态数据转换
+----------------------------------------------------------*@
+@helper BaseState(byte state){
+    if (state == 1)
+    {
+        <span>正 常</span>
+    }
+    else if (state == 0)
+    {
+        <span>禁 用</span>
+    }
+    else
+    {
+        <span>未 知</span>
+    }
+}
+@* 使用状态数据转换
+----------------------------------------------------------*@
+@helper ApplyState(byte state)
+{
+    if (state == 0)
+    {
+        <span>未启用</span>
+    }
+    else if (state == 1)
+    {
+        <span>已启用</span>
+    }
+    else
+    {
+        <span>未 知</span>
+    }
+}
+@* 数据内容显示转换
+----------------------------------------------------------*@
+@helper ContentState(string dataValue)
+{
+    if (string.IsNullOrEmpty(dataValue))
+    {
+        <span>无</span>
+    }
+    else
+    {
+        <span>@dataValue</span>
+    }
+}
+@* 管理员级别显示转换
+----------------------------------------------------------*@
+@helper GradeState(byte state)
+{
+    if (state == 1)
+    {
+        <span>普通</span>
+    }
+    else if (state == 2)
+    {
+        <span>高级</span>
+    }
+    else if (state == 3)
+    {
+        <span>超级</span>
+    }
+    else
+    {
+        <span>未 知</span>
+    }
+}
+@* 权限扩展数据转换
+----------------------------------------------------------*@
+@helper ExtentState(byte state){
+    if (state == 1)
+    {
+        <span>人工添加</span>
+    }
+    else if (state == 2)
+    {
+        <span>同步获取</span>
+    }
+    else
+    {
+        <span>未 知</span>
+    }
+}

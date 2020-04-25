@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "单位部门添加";
+    ViewBag.MIndex = 7;
+    ViewBag.CIndex = 2;
+    ViewBag.BodyTitle = "单位部门数据添加";
+    Layout = "~/Views/Shared/_LayoutEditor.cshtml";
+}
+@section Functions{
+    <li><input class="button" type="button" value="保 存" onclick="dataSave();" /></li>
+    <li><input class="button" type="button" value="取 消" onclick="GotoHref('/Depart/List/1');" /></li>
+}
+@Html.AntiForgeryToken()
+<div class="field-item">
+    <label>部门标识：</label>
+    @Html.DropDownList("ddlFather", DepartHandler.GetSelectList(0), new { @class="percent25" })
+    <span class="color-red padding-top-3">*</span>
+    <span id="icoFather" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoFather" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>部门名称：</label>
+    @Html.TextBox("txtName", null, new { @class = "input-text percent25", maxlength = "50" })
+    <span class="color-red padding-top-3">*</span>
+    <span id="icoName" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoName" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>部门编码：</label>
+    @Html.TextBox("txtCode", null, new { @class = "input-text percent25", maxlength = "50" })
+    <span id="icoCode" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoCode" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>部门识别码：</label>
+    @Html.TextBox("txtIdent", 0, new { @class = "input-text percent25", maxlength = "8" })
+    <span id="icoIdent" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoIdent" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>部门序列：</label>
+    @Html.TextBox("txtRank", 255, new { @class = "input-text percent25", maxlength = "5" })
+    <span id="icoRank" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoRank" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>部门描述：</label>
+    @Html.TextArea("txtDesc", new { @class = "input-text percent50", maxlength = "300" })
+    <span id="icoDesc" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoDesc" class="color-blue"></span>
+</div>
+<div class="field-item">&nbsp;</div>
+@section Scripts{
+    <script src="@Scripts.Url("~/Scripts/depart/add.js")" type="text/javascript"></script>
+}

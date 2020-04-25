@@ -1,0 +1,47 @@
+﻿@model DawnAuthLogsMDL
+@{
+    ViewBag.Title = "日志详细信息";
+    ViewBag.MIndex = 1;
+    ViewBag.CIndex = 4;
+    ViewBag.BodyTitle = "日志详细信息";
+    Layout = "~/Views/Shared/_LayoutEditor.cshtml";
+    int FPageCurrent = TypeHelper.TypeToInt32(ViewBag.PageCurrent, 1);
+}
+@section Functions{
+    <li><input class="button" type="button" value="返 回" onclick="GotoHref('/Info/LogsList/@FPageCurrent');" /></li>
+}
+@if (Model == null || Model.LogId == null)
+{    
+    @Html.Partial("_PartialJump")
+}
+else
+{
+    <div class="field-item">
+        <label>系统编号：</label>
+        <input class="input-text percent50" type="text" disabled="disabled" value="@Model.LogId.ToString().ToUpper()" />
+    </div>
+    <div class="field-item">
+        <label>记录时间：</label>
+        <input class="input-text percent50" type="text" disabled="disabled" value="@Model.LogTime.ToString("yyyy-MM-dd HH:mm:ss")" />
+    </div>
+    <div class="field-item">
+        <label>记录级别：</label>
+        <input class="input-text percent50" type="text" disabled="disabled" value="@Model.LogRating" />
+    </div>
+    <div class="field-item">
+        <label>记录表名：</label>
+        <input class="input-text percent50" type="text" disabled="disabled" value="@Model.LogTable" />
+    </div>
+    <div class="field-item">
+        <label>记录动作：</label>
+        <textarea class="input-text percent50" disabled="disabled">@Model.LogAction</textarea>
+    </div>
+    <div class="field-item">
+        <label>记录备注：</label>
+        <textarea class="input-text percent50" disabled="disabled">@Model.LogMemo</textarea>
+    </div>
+    <div class="field-item">
+        <label>操作用户：</label>
+        <input class="input-text percent50" type="text" disabled="disabled" value="@Model.LogUname" />
+    </div>
+}

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<DawnAuthErrorMDL>
+@{
+    ViewBag.Title = "错误信息管理";
+    ViewBag.MIndex = 1;
+    ViewBag.CIndex = 3;
+    ViewBag.BodyTitle = "错误信息数据列表";
+    var FPager = ViewBag.FPager as PagerHelperCHS;
+    var FPageCurrent = TypeHelper.TypeToInt32(ViewBag.PageCurrent, 1);
+}
+@section Functions{
+    <li><input class="button" type="button" value="数据清空" onclick="dataclear();" /></li>
+    <li><input class="button" type="button" value="刷 新" onclick="location.reload();" /></li>
+}
+@Html.AntiForgeryToken()
+<div class="tab-content default-tab" id="tab1">    
+    <input type="hidden" id="hidPageCurrent" value="@FPageCurrent" />
+    <table id="table-thead">
+        <thead>
+            <tr>
+                <th class="per15">记录时间</th>
+                <th class="per20">错误地址</th>
+                <th class="per30">错误消息</th>
+                <th class="per15">用户IP</th>
+                <th class="per10">操作用户</th>
+                <th class="per10">数据操作</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="table-tbody">
+        <table>
+            <tbody id="dataShowArea">
+                @foreach (var item in Model) {
+                    <tr>
+                        <td class="per15">@item.ErrTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                        <td class="per20">@item.ErrAddress</td>
+                        <td class="per30">@item.ErrMessage</td>
+                        <td class="per15">@item.ErrIp</td>
+                        <td class="per10">@item.ErrUname</td>
+                        <td class="per10">@Html.ActionLink("详细信息", "ErrorDetailed", new { id = item.ErrId, pager = FPageCurrent })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="table-tfoot">
+        @Html.Raw(FPager.ShowPagerByScriptByNumeric("/Info/ErrorList/", null, true, PagerType.Mvc))
+    </div>
+</div>
+@section Scripts{
+    <script src="@Scripts.Url("~/Scripts/Info/error-list.js")" type="text/javascript"></script>
+}

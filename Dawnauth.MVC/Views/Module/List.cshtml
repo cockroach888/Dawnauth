@@ -1,0 +1,74 @@
+﻿@model IEnumerable<DawnAuthModuleMDL>
+@{
+    ViewBag.Title = "模块信息管理";
+    ViewBag.MIndex = 6;
+    ViewBag.CIndex = 1;
+    ViewBag.BodyTitle = "模块信息数据列表";
+    var FPager = ViewBag.Pager as PagerHelperCHS;
+    var FPageCurrent = TypeHelper.TypeToInt32(ViewBag.PageCurrent, 1);
+    var FPagerParam = ViewBag.PagerParam as string;
+}
+@section Functions{
+    <li><input class="button" type="button" value="刷 新" onclick="location.reload();" /></li>
+}
+@Html.AntiForgeryToken()
+<div class="tab-content default-tab" id="tab1">    
+    <input type="hidden" id="hidPageCurrent" value="@FPageCurrent" />
+    <div id="table-search">
+        <div class="search-box">
+            <label>隶属模块：</label>
+            @Html.DropDownList("sltModule", ModuleHandler.GetSelectList(0), new { @class = "search-text1" })
+            <label>模块编码：</label>
+            <input class="input-text search-text1" type="text" id="txtCode" />
+            <input class="button" type="button" value="开始检索" onclick="onSearchGo();" />
+            <input class="button" type="button" value="清空检索" onclick="onSearchClear();" />
+            <span class="color-red f14 margin-left-10" id="searchTips"></span>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <table id="table-thead">
+        <thead>
+            <tr>
+                <th class="per15">模块名称</th>               
+                <th class="per15">模块编码</th>
+                <th class="per10">识别码</th>
+                <th class="per10">模块序列</th>
+                <th class="per10">模块统计</th>
+                <th class="per20">模块描述</th>
+                <th class="per15">数据操作</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="table-tbody">
+        <table>
+            <tbody id="dataShowArea">                                        
+                @foreach (var item in Model) {
+                    <tr>
+                        <td class="per15">@item.MdlName</td>                        
+                        <td class="per15">@item.MdlCode</td>
+                        <td class="per10">@item.MdlIdent</td>
+                        <td class="per10">@item.MdlRank</td>
+                        <td class="per10">@item.MdlCounts</td>
+                        <td class="per20">@ChangeHelper.ContentState(item.MdlDesc)</td>
+                        <td class="per15">
+                            <a class="color-blue" href="javascript:void(0);" onclick="dataTrees(@item.MdlId,'@item.MdlName');"><img src="~/Images/icons/side_tree.png" /> 目录树</a>
+                            @if (item.MdlCounts <= 0)
+                            {
+                                <a class="color-red" href="javascript:void(0);" onclick="dataDelete(@item.MdlId);"><img src="~/Images/icons/delete.png" /> 删除</a>
+                            }                            
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="table-tfoot">
+        @Html.Raw(FPager.ShowPagerByScriptByNumeric("/Module/Search", FPagerParam, true, PagerType.Mvc))
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/js/validate")
+    <script src="@Scripts.Url("~/Scripts/module/list.js")" type="text/javascript"></script>
+}

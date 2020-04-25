@@ -1,0 +1,315 @@
+﻿/* 工具条 Sidebar
+--------------------------------------------------------------------------------*/
+#sidebar {
+    background: url('../images/bg-sidebar.gif') top left no-repeat;
+    width: 230px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #888;
+}
+    #sidebar #sidebar-wrapper {
+        margin: 0 0 0 9px;
+    }
+    #sidebar a,
+    #sidebar a:active {
+        color: #ccc;
+    }
+        #sidebar a:hover {
+            color: #fff;
+        }
+    #sidebar #sidebar-title {
+        margin: 40px 0 40px 15px;
+    }
+    #sidebar #logo {
+        margin: 40px 0 40px 0;
+    }
+    #sidebar #profile-links {
+        padding: 0 15px 20px 15px;
+        text-align: right;
+        line-height: 1.5em;
+    }
+        #sidebar #profile-links p {
+            line-height: 0.7em;
+        }
+/* 可折叠的工具条菜单 Sidebar Accordion Menu
+--------------------------------------------------------------------------------*/
+    #sidebar #main-nav {        
+        width: 206px;
+        padding: 0;
+        margin: 0 0 0 15px;
+    }
+        #sidebar #main-nav li {
+            list-style: none;
+            padding-bottom: 10px;
+            text-align: right;
+        }
+            #sidebar #main-nav li a.nav-top-item {
+                background: transparent url('../images/bg-menu-item-green.gif') right center no-repeat; /* Background image for default color scheme - green */
+                padding: 10px 15px;
+                color: #fff;
+                font-size: 14px;
+                cursor: pointer;
+                display: block;
+                text-decoration: none;
+            }
+            #sidebar #main-nav li a.current {
+                background-image: url('../images/bg-menu-item-current.gif') !important;
+                color: #333;
+                font-weight: bold;
+            }
+                #sidebar #main-nav li a.current:hover {
+                    color: #333;
+                }
+        #sidebar #main-nav ul {
+            padding: 0;
+            font-size: 12px;
+            margin: 0;
+        }
+            #sidebar #main-nav ul li {
+                list-style: none;
+                margin: 0;
+                text-align: right;
+                padding: 0;
+            }
+                #sidebar #main-nav ul li a {
+                    padding: 8px 15px;
+                    display: block;
+                    color: #aaa;
+                    font-size: 13px;
+                    line-height: 1.2em;
+                }
+                    #sidebar #main-nav ul li a:hover,
+                    #sidebar #main-nav ul li a.current,
+                    #sidebar #main-nav ul li a.current:hover {
+                        color: #fff;
+                    }
+                    #sidebar #main-nav ul li a.current {
+                        background: transparent url('../images/menu-current-arrow.gif') right center no-repeat !important;
+                    }
+/* 内容表格 Table
+--------------------------------------------------------------------------------*/
+h1 {
+    padding: 0;
+}
+/* 检索区域 Search area
+----------------------------------------*/
+#table-search {
+}
+    #table-search .search-box {
+        font-size: 14px;
+        margin: 0 auto;
+        padding: 5px 0 10px 0;
+        width: 98%;
+        min-height: 26px;
+        line-height: 26px;
+        clear: both;
+    }
+    #table-search .search-text1 {
+        width: 120px;
+    }
+    #table-search .search-text2 {
+        width: 60px;
+    }
+    #table-search .search-text3 {
+        width: 135px;
+    }
+    #table-search label,
+    #table-search select,
+    #table-search input {
+        float: left;
+        margin-right: 5px;
+        display: inline;
+    }
+    #table-search label {
+        float: left;
+        height: 32px;
+        line-height: 32px;
+        width: 80px;
+        text-align: right;
+        overflow: hidden;
+    }
+    #table-search span {
+        float: left;
+        height: 32px;
+        line-height: 32px;
+        display: inline;
+        overflow: hidden;
+    }
+    #table-search select {
+        margin-top: 3px;
+        _margin-top: 1px;
+    }
+    #table-search input.input-text,
+    #table-search select {
+        padding: 6px;
+        font-size: 13px;
+        background: #fff url('../images/bg-form-field.gif') top left repeat-x;
+        border: 1px solid #d5d5d5;
+        color: #333;
+    }
+    #table-search select {
+        padding: 4px;
+    }
+/* 正文区域 Body area
+----------------------------------------*/
+#main-content div#table-tbody {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#main-content table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0 none;
+}
+    #main-content table thead th {
+        font-weight: bold;
+        font-size: 15px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+        #main-content table thead th a {
+            display: block;
+            position: relative;
+        }
+            #main-content table thead th a:link,
+            #main-content table thead th a:visited,
+            #main-content table thead th a:active,
+            #main-content table thead th a:hover {
+                color: #333;
+                font-weight: 600;
+                text-decoration: none;
+                padding: 0;
+            }
+            #main-content table thead th a:hover {
+                color: #000;
+            }
+        #main-content table thead th.asc a,
+        #main-content table thead th.desc a {
+            margin-right: .75em;
+        }
+            #main-content table thead th.asc a:after,
+            #main-content table thead th.desc a:after {
+                display: block;
+                position: absolute;
+                right: 0em;
+                top: 0;
+                font-size: 0.75em;
+            }
+            #main-content table thead th.asc a:after {
+                content: '▲';
+            }
+            #main-content table thead th.desc a:after {
+                content: '▼';
+            }
+/* 表格正文 Table tbody
+----------------------------------------*/
+#main-content tbody {
+    border-bottom: 1px solid #ddd;
+}
+    #main-content tbody tr {
+        background: #fff;        
+    }
+        #main-content tbody tr.alt-row {
+            background: #E5E5E5;
+        }
+        #main-content tbody tr.alt-selected {
+            background: #51B2F6;
+        }
+        #main-content tbody tr td a {
+            padding: 0 1px 0 0;
+        }
+/* 表格 Table 表头、行、列
+----------------------------------------*/
+#main-content table td,
+#main-content table th {
+    padding: 8px;
+    line-height: 1.3em;
+}
+/* 表格页脚 Table tfoot
+----------------------------------------*/
+#main-content table tfoot td .bulk-actions {
+    padding: 15px 0 5px 0;
+}
+    #main-content table tfoot td .bulk-actions select {
+        background: #fff url('../images/bg-form-field.gif') top left repeat-x;
+        color: #333;
+        font-size: 13px;
+        padding: 4px;
+        border: 1px solid #d5d5d5;
+    }
+/* 表格字段宽度 Table cell width
+----------------------------------------*/
+#main-content table .small {
+    min-width: 40px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+#main-content table .normal {
+    min-width: 80px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+#main-content table .standard {
+    min-width: 160px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+#main-content table .deluxe {
+    min-width: 240px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+#main-content table .larger {
+    min-width: 320px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+/* 表格字段宽度 Table cell width
+----------------------------------------*/
+#main-content table .per5 {
+    width: 5%;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+#main-content table .per10 {
+    width: 10%;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+#main-content table .per15 {
+    width: 15%;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+#main-content table .per20 {
+    width: 20%;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+#main-content table .per25 {
+    width: 25%;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+#main-content table .per30 {
+    width: 30%;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+#main-content table .per35 {
+    width: 35%;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+#main-content table .per40 {
+    width: 40%;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+#dataShowArea td p {
+    padding: 0 !important;
+}

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DawnAuthLogsMDL>
+@{
+    ViewBag.Title = "日志信息管理";
+    ViewBag.MIndex = 1;
+    ViewBag.CIndex = 4;
+    ViewBag.BodyTitle = "日志信息数据列表";
+    var FPager = ViewBag.FPager as PagerHelperCHS;
+    var FPageCurrent = TypeHelper.TypeToInt32(ViewBag.PageCurrent, 1);
+}
+@section Functions{
+    <li><input class="button" type="button" value="数据清空" onclick="dataclear();" /></li>
+    <li><input class="button" type="button" value="刷 新" onclick="location.reload();" /></li>
+}
+@Html.AntiForgeryToken()
+<div class="tab-content default-tab" id="tab1">    
+    <input type="hidden" id="hidPageCurrent" value="@FPageCurrent" />
+    <table id="table-thead">
+        <thead>
+            <tr>
+                <th class="per15">记录时间</th>
+                <th class="per10">记录级别</th>
+                <th class="per20">记录表名</th>
+                <th class="per30">记录备注</th>
+                <th class="per10">操作用户</th>
+                <th class="per10">数据操作</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="table-tbody">
+        <table>
+            <tbody id="dataShowArea">                                        
+                @foreach (var item in Model) {
+                    <tr>
+                        <td class="per15">@item.LogTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                        <td class="per10">@item.LogRating</td>
+                        <td class="per20">@item.LogTable</td>
+                        <td class="per30">@item.LogMemo</td>
+                        <td class="per10">@item.LogUname</td>
+                        <td class="per10">@Html.ActionLink("详细信息", "LogsDetailed", new { id = item.LogId, pager = FPageCurrent })</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="table-tfoot">
+        @Html.Raw(FPager.ShowPagerByScriptByNumeric("/Info/LogsList/", null, true, PagerType.Mvc))
+    </div>
+</div>
+@section Scripts{
+    <script src="@Scripts.Url("~/Scripts/Info/logs-list.js")" type="text/javascript"></script>
+}

@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "照片补传";
+    ViewBag.BodyTitle = "管理员照片补传";
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+    int FUserId = TypeHelper.TypeToInt32(ViewBag.UserId, 0);
+}
+@section Functions{
+    <li><input class="button" type="button" value="保 存" onclick="dataSave();" /></li>
+}
+@Html.AntiForgeryToken()
+<div class="notification information">
+    <a href="javascript:void(0);" class="close"><img src="/images/icons/cross_grey_small.png" title="关闭提示" alt="关闭提示" /></a>
+    <div id="tab-content-tips">
+        <b>请选择管理员个人肖像。</b>
+    </div>
+</div>
+<input type="hidden" id="hidUserId" value="@FUserId" />
+<div class="field-item">
+    <label>个人肖像：</label>
+    @*<img class="input-text percent25" id="imgPicture" src="#" alt="个人肖像" />*@
+    <input class="input-text percent25" type="image" id="imgPicture" />
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span>图片尺寸 150 * 180 像素</span>
+</div>
+<div class="field-item">
+    <label>照片选择：</label>
+    <input class="input-text percent25" type="file" id="fupPicture" />
+    <span class="color-red padding-top-3">*</span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span class="color-blue">请选择文件，支持文件：JPG、PNG</span>
+</div>
+@section Scripts{
+    @*@Scripts.Render("~/js/upload")*@
+    <script src="@Scripts.Url("~/Scripts/user/photo.js")" type="text/javascript"></script>
+}

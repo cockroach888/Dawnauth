@@ -1,0 +1,12 @@
+﻿<div id="sidebar">
+    <div id="sidebar-wrapper">
+        <h1 id="sidebar-title" class="pa ti"><a href="javascript:void(0);">@GeneralHandler.SiteName</a></h1>
+        <a href="javascript:void(0);"><img id="logo" src="/images/logo.png" alt="@GeneralHandler.SiteName" title="@GeneralHandler.SiteName" /></a>
+        <div id="profile-links">
+            @Html.Partial("_PartialLogin")
+        </div>
+        <ul id="main-nav">
+            @Html.Raw(MenuHandler.GetMenuItems(TypeHelper.TypeToInt32(ViewBag.MIndex, 1), TypeHelper.TypeToInt32(ViewBag.CIndex, 1)))
+        </ul>
+    </div>
+</div>

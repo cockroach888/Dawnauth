@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "内容区域模板样例";
+    ViewBag.MIndex = 0;
+    ViewBag.CIndex = 0;
+    ViewBag.BodyTitle = "内容区域通用模板样例";
+}
+@section Heads{
+    <style type="text/css">
+        
+    </style>
+}
+@section Functions{
+    <li><input class="button" type="button" value="弹出窗口" onclick="javascript: DawnPopIFrameReload('弹窗通用模板样例', '/Auth/TemplateDialog/');" /></li>
+    <li><input class="button" type="button" value="功能按钮" onclick="" /></li>
+    <li><input class="button" type="button" value="功能按钮" onclick="" /></li>
+    <li><input class="button" type="button" value="刷 新" onclick="location.reload();" /></li>
+}
+@section ContentTabs{
+    <ul class="content-box-tabs">
+        <li><a href="#tab1" class="default-tab">标签一</a></li>
+        <li><a href="#tab2">标签二</a></li>
+        <li><a href="#tab3">标签三</a></li>
+    </ul>
+}
+@Html.AntiForgeryToken()
+<div class="tab-content default-tab" id="tab1">    
+    <div id="table-search">
+        <div class="notification attention">
+            <a href="javascript:void(0);" class="close"><img src="/images/icons/cross_grey_small.png" title="关闭提示" alt="关闭提示" /></a>
+            <div id="tab-content-tips">
+                这是一个内容盒子，你可以把任何内容都放到这里来，你还可以通过右上角的关闭按钮关闭这个提示信息。
+            </div>
+        </div>
+    </div>
+    <table id="table-thead">
+        <thead>
+            <tr>
+                <th class="per15">登录时间</th>
+                <th class="per15">IP地址</th>
+                <th class="per15">MAC地址</th>
+                <th class="per15">计算机名称</th>
+                <th class="per30">附加信息</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="table-tbody">
+        <table>
+            <tbody id="dataShowArea">
+                @for (int i = 0; i < 50; i++)
+                {
+                    <tr>
+                        @if (i % 2 == 0)
+                        {
+                            <td class="per15">@i</td>
+                        }
+                        else
+                        {
+                            <td class="per15">登录时间 @i</td>
+                        }                        
+                        <td class="per15">@i</td>
+                        <td class="per15">@i</td>
+                        <td class="per15">@i</td>
+                        <td class="per30">附加信息附加信息附加信息附加信息附加信息附加信息附加信息附加信息 @i</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="table-tfoot">
+        <div id="pagerList">共 86 条，每页 86/100 条，第 1/1 页　<span class="current">1</span></div>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/js/validate")
+    <script type="text/javascript">
+        var loadContent = function () {
+            $('.attention').addClass('success');
+            $('.attention').removeClass('attention');
+        };
+    </script>
+}

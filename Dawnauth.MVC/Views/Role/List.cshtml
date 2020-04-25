@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DawnAuthRoleMDL>
+@{
+    ViewBag.Title = "角色信息管理";
+    ViewBag.MIndex = 4;
+    ViewBag.CIndex = 1;
+    ViewBag.BodyTitle = "角色信息数据列表";
+    var FPager = ViewBag.FPager as PagerHelperCHS;
+    var FPageCurrent = TypeHelper.TypeToInt32(ViewBag.PageCurrent, 1);
+}
+@section Functions{
+    <li><input class="button" type="button" value="添加新角色" onclick="@MenuHandler.UrlRoleAdd" /></li>
+    <li><input class="button" type="button" value="刷 新" onclick="location.reload();" /></li>    
+}
+@Html.AntiForgeryToken()
+<div class="tab-content default-tab" id="tab1">    
+    <input type="hidden" id="hidPageCurrent" value="@FPageCurrent" />
+    <table id="table-thead">
+        <thead>
+            <tr>
+                <th class="per15">角色名称</th>
+                <th class="per15">角色编码</th>
+                <th class="per30">角色描述</th>
+                <th class="per20">数据操作</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="table-tbody">
+        <table>
+            <tbody id="dataShowArea">                                        
+                @foreach (var item in Model) {
+                    <tr>
+                        <td class="per15">@item.RoleName</td>
+                        <td class="per15">@item.RoleCode</td>
+                        <td class="per30">@ChangeHelper.ContentState(item.RoleDesc)</td>
+                        <td class="per20">
+                            <a class="color-blue" href="/Role/Authority/@item.RoleCode/@FPageCurrent"><img src="~/Images/icons/group_key.png" /> 权限设定</a>
+                            <a class="color-blue" href="javascript:void(0);" onclick="DawnPopIFrameReload('角色信息数据编辑', '/Role/Editor/@item.RoleId');"><img src="~/Images/icons/editor.png" /> 编辑</a>
+                            <a class="color-red" href="javascript:void(0);" onclick="dataDelete(@item.RoleId);"><img src="~/Images/icons/delete.png" /> 删除</a>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="table-tfoot">
+        @Html.Raw(FPager.ShowPagerByScriptByNumeric("/Role/List", null, true, PagerType.Mvc))
+    </div>
+</div>
+@section Scripts{
+    <script src="@Scripts.Url("~/Scripts/role/list.js")" type="text/javascript"></script>
+}

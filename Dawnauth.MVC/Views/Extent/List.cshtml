@@ -1,0 +1,66 @@
+﻿@model IEnumerable<DawnAuthExtentMDL>
+@{
+    ViewBag.Title = "权限扩展管理";
+    ViewBag.MIndex = 8;
+    ViewBag.CIndex = 1;
+    ViewBag.BodyTitle = "权限扩展数据列表";    
+    var FPager = ViewBag.Pager as PagerHelperCHS;
+    var FPagerParam = ViewBag.PagerParam as string;
+}
+@section Functions{
+    <li><input class="button" type="button" value="刷 新" onclick="location.reload();" /></li>
+}
+@Html.AntiForgeryToken()
+<div class="tab-content default-tab" id="tab1">
+    <div id="table-search">
+        <div class="search-box">
+            <label>扩展编码：</label>
+            <input class="input-text search-text1" type="text" id="txtCode" />
+            <label>扩展标识：</label>
+            <input class="input-text search-text1" type="text" id="txtMark" />
+            <input class="button" type="button" value="开始检索" onclick="onSearchGo();" />
+            <input class="button" type="button" value="清空检索" onclick="onSearchClear();" />
+            <span class="color-red f14 margin-left-10" id="searchTips"></span>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <table id="table-thead">
+        <thead>
+            <tr>
+                <th class="per5">扩展状态</th>
+                <th class="per15">扩展编码</th>
+                <th class="per20">编码名称</th>
+                <th class="per15">扩展标识</th>
+                <th class="per20">标识名称</th>
+                <th class="per15">扩展备注</th>
+                <th class="per10">数据操作</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="table-tbody">
+        <table>
+            <tbody id="dataShowArea">                                        
+                @foreach (var item in Model) {
+                    <tr>
+                        <td class="per5">@ChangeHelper.ExtentState(item.ExteStatus)</td>                        
+                        <td class="per15">@item.ExteCode</td>
+                        <td class="per20">@item.ExteCodeName</td>
+                        <td class="per15">@item.ExteMark</td>
+                        <td class="per20">@item.ExteMarkName</td>
+                        <td class="per15">@ChangeHelper.ContentState(item.ExteMemo)</td>
+                        <td class="per10">
+                            <a class="color-red" href="javascript:void(0);" onclick="dataDelete(@item.ExteId);"><img src="~/Images/icons/delete.png" /> 删除</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="table-tfoot">
+        @Html.Raw(FPager.ShowPagerByScriptByNumeric("/Extent/Search", FPagerParam, true, PagerType.Mvc))
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/js/validate")
+    <script src="@Scripts.Url("~/Scripts/extent/list.js")" type="text/javascript"></script>
+}

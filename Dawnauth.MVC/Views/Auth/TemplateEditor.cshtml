@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "编辑区域模板样例";
+    ViewBag.MIndex = 0;
+    ViewBag.CIndex = 0;
+    ViewBag.BodyTitle = "编辑区域通用模板样例";
+    Layout = "~/Views/Shared/_LayoutEditor.cshtml";
+}
+@section Heads{
+    <style type="text/css">
+        
+    </style>
+}
+@section Functions{
+    <li><input class="button" type="button" value="功能按钮" onclick="" /></li>
+    <li><input class="button" type="button" value="保 存" onclick="" /></li>
+    <li><input class="button" type="button" value="取 消" onclick="" /></li>
+    <li><a href="javascript:void(0);" onclick="location.reload();">刷新</a></li>
+}
+@section ContentTabs{
+    <ul class="content-box-tabs">
+        <li><a href="#tab1" class="default-tab">标签一</a></li>
+        <li><a href="#tab2">标签二</a></li>
+        <li><a href="#tab3">标签三</a></li>
+    </ul>
+}
+@Html.AntiForgeryToken()
+<div class="notification attention">
+    <a href="javascript:void(0);" class="close"><img src="/images/icons/cross_grey_small.png" title="关闭提示" alt="关闭提示" /></a>
+    <div id="tab-content-tips">
+        这是一个内容盒子，你可以把任何内容都放到这里来，你还可以通过右上角的关闭按钮关闭这个提示信息。
+    </div>
+</div>
+<div class="field-item">
+    <label>文本框一：</label>
+    <input class="input-text percent25" type="text" id="txtName" maxlength="100" />
+    <span class="color-red padding-top-3">*</span>
+    <span id="icoName" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoName" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>文本框二：</label>
+    <input class="input-text percent50" type="text" id="txtMemo" maxlength="100" />
+    <span class="color-red padding-top-3">*</span>
+    <span id="icoMemo" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoMemo" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>下拉选择：</label>
+    <select class="percent25" id="sltSelect1">
+        <option>选项一</option>
+        <option>选项二</option>
+        <option selected="selected">选项三</option>
+        <option>选项四</option>
+        <option>选项五</option>
+    </select>
+    <span class="color-red padding-top-3">*</span>
+    <span id="icoSelect1" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoSelect1" class="color-blue"></span>
+</div>
+<div class="field-item">
+    <label>下拉选择：</label>
+    <select class="percent25" id="sltSelect2">
+        <option>选项一</option>
+        <option>选项二</option>
+        <option selected="selected">选项三</option>
+        <option>选项四</option>
+        <option>选项五</option>
+    </select>
+    <span class="color-red padding-top-3">*</span>
+    <span id="icoSelect2" class="margin-left-1em"></span>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoSelect2" class="color-blue"></span>
+</div>      
+<div class="field-item">
+    <label>我是复选框：</label>
+    <a href="javascript:void(0);" onclick="setCheckBox('chkCheckBox',1);">全选</a>/<a href="javascript:void(0);" onclick="setCheckBox('chkCheckBox',2);">取消</a>
+    @for (int i = 0; i < 6; i++){
+        <p><input type="checkbox" name="chkCheckBox" value="@i" /> 数值结果 @i</p>
+    }
+</div>
+<div class="field-item">
+    <label>不可修改：</label>
+    <input class="input-text percent50" type="text" id="txtDisabled" disabled="disabled" value="我是一段不可修改的文本内容" />
+    <span class="color-red padding-top-3">*</span>
+</div>
+<div class="field-item">
+    <label>多行文本：</label>
+    <textarea class="input-text percent50" id="txtArea" maxlength="500">我是打酱油的。</textarea>
+    <span id="icoArea" class="margin-left-1em"></span>
+    <ol class="list-box">
+        <li><a href="javascript:void(0);" onclick="$('#txtArea').val($('#txtArea').val()+'、医药商品购销员证书(高级)');">医药商品购销员证书(高级)</a></li>
+        <li><a href="javascript:void(0);" onclick="$('#txtArea').val($('#txtArea').val()+'、医药商品购销员证书(中级)');">医药商品购销员证书(中级)</a></li>
+        <li><a href="javascript:void(0);" onclick="$('#txtArea').val($('#txtArea').val()+'、医药商品购销员证书(初级)');">医药商品购销员证书(初级)</a></li>
+        <li><a href="javascript:void(0);" onclick="$('#txtArea').focus();">请点选 或 手工输入</a></li>
+    </ol>
+</div>
+<div class="field-memo">
+    <label>&nbsp;</label>
+    <span id="infoArea" class="color-blue"></span>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+
+        });
+    </script>
+}

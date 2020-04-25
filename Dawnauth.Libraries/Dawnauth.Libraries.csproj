@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4012B537-C30D-4EAE-AE83-787D2E588DAB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DawnXZ.Dawnauth.Libraries</RootNamespace>
+    <AssemblyName>DawnAuthority</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DawnAuthority.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DawnAuthority.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Dawnauth.Libraries.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DawnUtility">
+      <HintPath>..\..\..\..\Classlib\4.0\DawnUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="DBUtility.Mssql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=39982527e4914848, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Classlib\4.0\DBUtility.Mssql.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\Classlib\Newtonsoft.Json\Net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PHYUtility">
+      <HintPath>..\..\..\..\Classlib\4.0\PHYUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="VerifyUtility">
+      <HintPath>..\..\..\..\Classlib\4.0\VerifyUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="WebUtility">
+      <HintPath>..\..\..\..\Classlib\4.0\WebUtility.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\DawnAuthDepartmentBLL.cs" />
+    <Compile Include="BLL\DawnAuthUserBLL.cs" />
+    <Compile Include="BLL\DawnAuthUserExtentBLL.cs" />
+    <Compile Include="BLL\DawnAuthUserLoginBLL.cs" />
+    <Compile Include="BLL\DawnAuthUserPowerBLL.cs" />
+    <Compile Include="DBFactory\DALFactory.cs" />
+    <Compile Include="DBFactory\DataCache.cs" />
+    <Compile Include="Entity\DawnAuthDepartmentMDL.cs" />
+    <Compile Include="Entity\DawnAuthUserExtentMDL.cs" />
+    <Compile Include="Entity\DawnAuthUserLoginMDL.cs" />
+    <Compile Include="Entity\DawnAuthUserMDL.cs" />
+    <Compile Include="Entity\DawnAuthUserPowerMDL.cs" />
+    <Compile Include="Extended\BLL\DawnAuthUserBLL.cs" />
+    <Compile Include="Extended\IDAL\IDawnAuthUserDAL.cs" />
+    <Compile Include="Extended\SqlServerDAL\DawnAuthUserDAL.cs" />
+    <Compile Include="Handler\DawnauthHandler.cs" />
+    <Compile Include="Handler\GeneralHandler.cs" />
+    <Compile Include="IDAL\IDawnAuthDepartmentDAL.cs" />
+    <Compile Include="IDAL\IDawnAuthUserDAL.cs" />
+    <Compile Include="IDAL\IDawnAuthUserExtentDAL.cs" />
+    <Compile Include="IDAL\IDawnAuthUserLoginDAL.cs" />
+    <Compile Include="IDAL\IDawnAuthUserPowerDAL.cs" />
+    <Compile Include="IDAL\PagerInterface.cs" />
+    <Compile Include="SqlServerDAL\Conn.cs" />
+    <Compile Include="SqlServerDAL\DawnAuthDepartmentDAL.cs" />
+    <Compile Include="SqlServerDAL\DawnAuthUserDAL.cs" />
+    <Compile Include="SqlServerDAL\DawnAuthUserExtentDAL.cs" />
+    <Compile Include="SqlServerDAL\DawnAuthUserLoginDAL.cs" />
+    <Compile Include="SqlServerDAL\DawnAuthUserPowerDAL.cs" />
+    <Compile Include="DawnAuthlib.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Dawnauth.Libraries.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
